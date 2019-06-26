@@ -105,23 +105,23 @@ class SensorThermalComfort(Entity):
             self.hass, self._humidity_entity, self.humidity_state_listener)
 
         temperature_state = hass.states.get(temperature_entity)
-        if temperature_state and temperature_state.state != STATE_UNKNOWN and temperature_state.state != STATE_UNAVAILABLE:
+        if temperature_state and temperature_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
             self._temperature = float(temperature_state.state)
 
         humidity_state = hass.states.get(humidity_entity)
-        if humidity_state and humidity_state.state != STATE_UNKNOWN and humidity_state.state != STATE_UNAVAILABLE:
+        if humidity_state and humidity_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
             self._humidity = float(humidity_state.state)
 
     def temperature_state_listener(self, entity, old_state, new_state):
         """Handle temperature device state changes."""
-        if new_state and new_state.state != STATE_UNKNOWN and new_state.state != STATE_UNAVAILABLE:
+        if new_state and new_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
             self._temperature = float(new_state.state)
 
         self.async_schedule_update_ha_state(True)
 
     def humidity_state_listener(self, entity, old_state, new_state):
         """Handle humidity device state changes."""
-        if new_state and new_state.state != STATE_UNKNOWN and new_state.state != STATE_UNAVAILABLE:
+        if new_state and new_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
             self._humidity = float(new_state.state)
 
         self.async_schedule_update_ha_state(True)
