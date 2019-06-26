@@ -173,20 +173,20 @@ class SensorThermalComfort(Entity):
         """https://en.wikipedia.org/wiki/Dew_point"""
         dewPoint = self.computeDewPoint(temperature, humidity)
         if dewPoint < 10:
-            return "A bit dry for some"
+            return "Etwas trocken"
         elif dewPoint < 13:
-            return "Very comfortable"
+            return "Sehr angenehm"
         elif dewPoint < 16:
-            return "Comfortable"
+            return "Angenehm"
         elif dewPoint < 18:
-            return "OK for most, but all perceive the humidity at upper edge"
+            return "Für die meisten OK"
         elif dewPoint < 21:
-            return "Somewhat uncomfortable for most people at upper edge"
+            return "Etwas unangenehm"
         elif dewPoint < 24:
-            return "Very humid, quite uncomfortable"
+            return "Sehr feucht, ziemlich unangenehm"
         elif dewPoint < 26:
-            return "Extremely uncomfortable, oppressive"
-        return "Severely high, even deadly for asthma related illnesses"
+            return "Sehr unangenehm, bedrückend"
+        return "Sehr hoch"
 
     def computeAbsoluteHumidity(self, temperature, humidity):
         """https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/"""
